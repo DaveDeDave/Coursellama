@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.png" sizes="16x16" type="image/png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/aos.css" rel="stylesheet">
+    <link href="/css/customCss.css" rel="stylesheet">
+    <script defer src="/js/fontawesomeAll.js"></script>
+    <title>Coursellama - About</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <div class="blueDiv1 text-light">
+        <%- include('component/header') -%>
+        
+        <div class="container text-center text-light py-5">
+            <h1 class="display-3 mb-3">Perché questo sito?</h1>
+            <p>Questo sito è stato sviluppato come progetto del corso di Metodologie di Programmazione per il Web (A.A. 2020/21) presso l'Università del Piemonte Orientale.
+            </p>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+
+    <div class="container text-dark py-5" id="technologies">
+        <div class="text-center mb-3">
+            <h1>Tecnologie e funzionamento</h1>
+        </div>
+        <p>Questa applicazione utilizza:</p>
+        <ul>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>EJS</li>
+        </ul>
+        <p>Sono presenti due tipi di utente:</p>
+        <ul>
+            <li>Insegnante</li>
+            <li>Utente</li>
+        </ul>
+        <p>Funzionalità principali ospite:</p>
+        <ul>
+            <li>Visualizzare le pagine con la lista dei corsi e degli insegnanti</li>
+            <li>Accedere alle pagine dei corsi pubblici e scaricare o visionare il loro materiale</li>
+            <li>Accedere alla sezione "Domande" dei corsi pubblici</li>
+        </ul>
+        <p>Funzionalità principali studente:</p>
+        <ul>
+            <li>Iscriversi ai corsi</li>
+            <li>Inviare delle domande ai docenti dei corsi a cui si è iscritto</li>
+            <li>Tutte le funzionalità che hanno anche gli ospiti</li>
+        </ul>
+        <p>Funzionalità principali insegnante:</p>
+        <ul>
+            <li>Iscriversi ai corsi</li>
+            <li>Creare dei corsi, creare delle lezioni nei corsi e caricarci del materiale</li>
+            <li>Cancellare i propri corsi, le proprie lezioni e il proprio materiale</li>
+            <li>Tutte le funzionalità che hanno anche gli ospiti</li>
+        </ul>
+        <p>L'insegnante non può:</p>
+        <ul>
+            <li>Iscriversi ai propri corsi</li>
+            <li>Inviare delle domande ai docenti dei corsi a cui si è iscritto</li>
+        </ul>
+        <p>Inoltre, tutti gli utenti del sito potranno in ogni momento eliminare il proprio account. 
+            <u>Attenzione</u>, i professori che cancelleranno il proprio profilo cancelleranno anche tutti i corsi che hanno creato.</p>
+    </div>
+
+    <div class="blueDiv2 text-light mb-5" id="developer">
+        <img class="img-fluid" src="/img/end_div_up.png">
+        <div class="container text-center">
+            <h1 class="mb-5">A proposito dello sviluppatore</h1>
+            <div class="row">
+                <div class="col-auto">
+                    <img class="border border-5 border-dark rounded-circle" width="200px" src="/img/myLogo.png" alt="">
+                </div>
+                <div class="col my-auto text-start">
+                    <p>Davide Ceci è uno studente presso l'Università del Piemonte Orientale. Frequenta il corso di informatica, materia di cui nutre una grande passione.
+                    Dedica parte del suo tempo libero per lo sviluppo di progetti o per approfondire determinati rami della programmazione.</p>
+                </div>
+            </div>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+ 
+    <%- include('component/footer') -%>
+    <%- include('component/cookie_consent') -%>
+
+    <a href="#" class="btn back-to-top rounded-circle shadow" data-aos="fade-up" data-aos-offset="500"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="/js/aos.js"></script>
+    <script src="/js/aosInit.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cookieConsent.js"></script>
+</body>
+</html>

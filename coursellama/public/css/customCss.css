@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'Ubuntu-Regular';
+    src: url('/font/Ubuntu-Regular.ttf');
+}
+
+body {
+    font-family: 'Ubuntu-Regular';
+}
+
+.blueDiv1 {
+    background-image: linear-gradient( 112.1deg,  rgba(32,38,57,1) 11.4%, rgba(63,76,119,1) 70.2% );
+}
+
+.blueDiv2 {
+    background-image: linear-gradient( 112.1deg,  rgba(63,76,119,1) 41.4%, rgba(32,38,57,1) 90.2% );
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1020;
+    background-color: #3f4c77;
+    color: white;
+}
+
+.back-to-top:hover {
+    color: white;
+}
+
+.footerTitle {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.bigIcon {
+    font-size: 60px;
+}
+
+.mediumIcon {
+    font-size: 20px;
+}  
+
+.material {
+    list-style-type: none;
+}
+
+.numberForm {
+    border: 0;
+}
+
+.modal-open {
+    overflow: overlay;
+}
+
+.uploadForm {
+    height: 50vh;
+}
+
+.hiddenFileInput {
+    display: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.customDropdown:active {
+    background-color: rgb(42, 53, 87)
+}

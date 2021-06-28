@@ -1,0 +1,3 @@
+'use strict';
+
+AOS.init();

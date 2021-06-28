@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.png" sizes="16x16" type="image/png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/aos.css" rel="stylesheet">
+    <link href="/css/customCss.css" rel="stylesheet">
+    <script defer src="/js/fontawesomeAll.js"></script>
+    <title>Coursellama</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <div class="blueDiv1 text-light">
+        <%- include('component/header') -%>
+
+        <div class="text-light text-center py-5">
+            <h1 class="display-3 fw-bolder pb-3">Benvenuto su Coursellama!</h1>
+            <div class="container">
+                <h5 class="mx-auto w-50">Coursellama è una nuova piattaforma di e-learning tutta da scoprire. Decidi tu se essere uno studente o un insegnante.</h5>
+            </div>
+            <a href="/about#technologies" type="button" class="btn btn-lg btn-light px-5 mx-2 mt-4">Funzionalità</a>
+            <a href="#findOut" type="button" class="btn btn-lg btn-outline-light px-5 mx-2 mt-4">Scopri</a>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+
+    <div id="getStarted" class="container text-dark py-5">
+        <div class="row">
+            <div class="col-md-5 pb-3">
+                <h1>Unisciti!</h1>
+                <h5>Se decidi di far parte della nostra community avrai a disposizione benefici esclusivi! <a href="/about#technologies" class="link-primary text-decoration-none">Scopri di più</a></h5>
+                <h5><a href="/register" class="link-primary text-decoration-none">Registrati</a> o <a href="/login" class="link-primary text-decoration-none">accedi</a> ora</h5>
+            </div>
+            <div class="col">
+                <img class="img-fluid rounded shadow" src="/img/join.jfif" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div id="findOut" class="blueDiv2 text-light">
+        <img class="img-fluid" src="/img/end_div_up.png">
+        <div class="container text-light py-5">
+            <div class="row pt-5 pb-md-5">
+                <div class="feature col-md-4 ">
+                    <span class="bigIcon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </span>
+                    <h2>Istruzione</h2>
+                    <p>Corsi istruttivi non da meno delle più grandi università mondiali.</p>
+                </div>
+                <div class="feature col-md-4">
+                    <span class="bigIcon">
+                        <i class="fas fa-book-reader"></i>
+                    </span>
+                    <h2>Corsi di qualità</h2>
+                    <p>Solo corsi di qualità su coursellama. Solo il meglio per i nostri utenti. Ogni corso è esaminato con cura dai nostri amministratori.</p>
+                </div>
+                <div class="feature col-md-4">
+                    <span class="bigIcon">
+                        <i class="fas fa-history"></i>
+                    </span>
+                    <h2>Da 10 anni</h2>
+                    <p>Da più di 10 anni forniamo i nostri corsi agli studenti di tutto il mondo</p>
+                </div>
+            </div>
+            <div class="row pt-md-5 pb-5">
+                <div class="feature col-md-4">
+                    <span class="bigIcon">
+                        <i class="fas fa-globe-europe"></i>
+                    </span>
+                    <h2>Insegnanti internazionali</h2>
+                    <p>Il nostro sito può vantare la presenza degli insegnanti e dei ricercatori più noti tra le università mondiali.</p>
+                </div>
+                <div class="feature col-md-4">
+                    <span class="bigIcon">
+                        <i class="fas fa-certificate"></i>
+                    </span>
+                    <h2>Certificato platinum</h2>
+                    <p>Coursellama è stato premiato dal noto consorzio dell'istruzione per essere il miglior sito di categorie istruttive.</p>
+                </div>
+                <div class="feature col-md-4">
+                    <span class="bigIcon">
+                        <i class="fas fa-wrench"></i>
+                    </span>
+                    <h2>Assistenza</h2>
+                    <p>Nel corso mancano delle slide? Il professore ha caricato il materiale sbagliato? Non sei sicuro di che cosa tratta il corso? Se sei uno studente chiedi direttamente a lui grazie alla nostra nuova funzionalità!</p>
+                </div>
+            </div>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+
+    <div class="container text-center text-dark py-5 mb-5">
+        <h1 class="mb-5">A proposito dello sviluppatore</h1>
+        <div class="row">
+            <div class="col-auto">
+                <img class="border border-5 border-dark rounded-circle" width="200px" src="/img/myLogo.png" alt="">
+            </div>
+            
+            <div class="col my-auto text-start">
+                <p>Davide Ceci è uno studente presso l'Università del Piemonte Orientale. <a href="/about#developer" class="link-primary text-decoration-none">Visualizza la biografia completa</a></p>
+            </div>
+        </div>
+    </div>
+ 
+    <%- include('component/footer') -%>
+    <%- include('component/cookie_consent') -%>
+
+    <a href="#" class="btn back-to-top rounded-circle shadow" data-aos="fade-up" data-aos-offset="500"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="/js/aos.js"></script>
+    <script src="/js/aosInit.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cookieConsent.js"></script>
+</body>
+</html>

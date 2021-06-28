@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.png" sizes="16x16" type="image/png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/aos.css" rel="stylesheet">
+    <link href="/css/customCss.css" rel="stylesheet">
+    <script defer src="/js/fontawesomeAll.js"></script>
+    <title>Coursellama - <%= ctx.course.title %></title>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <div class="blueDiv1 text-light">
+        <%- include('../component/header') -%>
+        
+        <div class="container text-light py-5">
+            <h1 class="display-2 text-center"><%= ctx.course.title %></h1>
+            <h6 class="text-center">Corso gestito da <%= ctx.course.creator %></h6>
+        </div>
+        <div class="container">
+            <% if(!ctx.info.admin) { %>
+                <% if(!ctx.info.subscribed) { %>
+                    <% if(ctx.info.logged) { %>
+                        <form action="/courses/subscribe" method="POST">
+                            <input type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+                            <input type="hidden" name="courseid" value="<%= ctx.course.id %>">
+                            <button type="submit" class="btn btn-lg btn-outline-light mb-3">Iscriviti</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/login"><button type="submit" class="btn btn-lg btn-outline-light mb-3">Iscriviti</button></a>
+                    <% } %>
+                <% } else { %>
+                    <form action="/courses/unsubscribe" method="POST">
+                        <input type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+                        <input type="hidden" name="courseid" value="<%= ctx.course.id %>">
+                        <button type="submit" class="btn btn-lg btn-outline-light mb-3">Disiscriviti</button>
+                    </form>
+                    <% if(ctx.user.role == 'student') { %>
+                        <a href="/courses/<%=ctx.course.id%>/ask"><button class="btn btn-lg btn-outline-light mb-3 me-3">Scrivi una domanda al docente</button></a>
+                    <% } %>
+                <% } %>
+            <% } %>
+            <a href="/courses/<%=ctx.course.id%>/questions"><button class="btn btn-lg btn-outline-light mb-3">Domande</button></a>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+    
+    <div class="container mb-5">
+        <% if(ctx.lessons.length == 0) { %>
+            <div class="text-center">
+                <p class="text-muted h1">Nessuna lezione presente</p>
+            </div>
+        <% } %>
+        <% for(let lesson of ctx.lessons) { %>
+            <div class="row py-4">
+                <div class="row">
+                    <h3><%= lesson.title %></h3>
+                </div>
+                <div class="row ps-4">
+                    <ul class="material">
+                        <% for(let material of lesson.materials) { %>
+                            <li>
+                                <% if(ctx.info.admin) { %> 
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#m<%=material.id%>"><i class="fas fa-times text-danger"></i></a> 
+                                    <div class="modal fade" id="m<%=material.id%>" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Conferma</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Eliminare il materiale "<%= material.name %>" definitivamente?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                                    <form action="/courses/delete" method="POST">
+                                                        <input type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+                                                        <input type="hidden" name="action" value="deleteMaterial">
+                                                        <input type="hidden" name="courseid" value="<%= ctx.course.id %>">
+                                                        <input type="hidden" name="lessonid" value="<%= lesson.id %>">
+                                                        <input type="hidden" name="materialid" value="<%= material.id %>">
+                                                        <input type="submit" class="btn btn-danger" value="Conferma">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                                <% if(material.name.split('.').pop() == 'pdf') { %>
+                                    <a href="/courses/<%=ctx.course.id%>/<%=lesson.id%>/<%=material.name%>?action=show%>" target="_blank" class="link-dark text-decoration-none">
+                                    <i class="far fa-file-pdf"></i>
+                                <% } else { %> 
+                                        <a href="/courses/<%=ctx.course.id%>/<%=lesson.id%>/<%=material.name%>?action=download" target="_blank" class="link-dark text-decoration-none">
+                                    <% if(['png', 'jpeg'].indexOf(material.name.split('.').pop()) != -1) { %>
+                                        <i class="far fa-file-image"></i>
+                                    <% } else if(['zip', 'rar', 'gzip'].indexOf(material.name.split('.').pop()) != -1) { %>
+                                        <i class="far fa-file-archive"></i>
+                                    <% } else { %>
+                                        <i class="far fa-file"></i>
+                                    <% } %>
+                                <% } %>
+                                    <%= material.name %>
+                                </a>
+                            </li>
+                        <% } %>
+                        </ul>
+                </div>
+                <% if(ctx.info.admin) { %>
+                    <div class="row text-center">
+                        <div class="col">
+                            <h5><a href="/courses/new?action=loadMaterial&c=<%=ctx.course.id%>&l=<%=lesson.id%>" class="link-secondary text-decoration-none">Aggiungi materiale +</a></h5>
+                        </div>
+                        <div class="col">
+                        <h5><a href="" class="link-secondary text-decoration-none" data-bs-toggle="modal" data-bs-target="#l<%=lesson.id%>">Elimina lezione -</a></h5>
+                        </div>
+                        <div class="modal fade" id="l<%=lesson.id%>" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Conferma</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Eliminare la lezione "<%= lesson.title %>" definitivamente?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                        <form action="/courses/delete" method="POST">
+                                            <input type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+                                            <input type="hidden" name="action" value="deleteLesson">
+                                            <input type="hidden" name="courseid" value="<%= ctx.course.id %>">
+                                            <input type="hidden" name="lessonid" value="<%= lesson.id %>">
+                                            <input type="submit" class="btn btn-danger" value="Conferma">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <hr>
+        <% } %>
+        <% if(ctx.info.admin) { %>
+            <div class="row py-4 text-center">
+                <div class="col">
+                    <h4>
+                        <a href="/courses/new?action=createLesson&c=<%= ctx.course.id %>" class="link-secondary text-decoration-none">Aggiungi lezione +</a>
+                    </h4>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <%- include('../component/footer') -%>
+    <%- include('../component/cookie_consent') -%>
+
+    <a href="#" class="btn back-to-top rounded-circle shadow" data-aos="fade-up" data-aos-offset="500"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="/js/aos.js"></script>
+    <script src="/js/aosInit.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cookieConsent.js"></script>
+</body>
+</html>

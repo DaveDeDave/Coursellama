@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.png" sizes="16x16" type="image/png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/customCss.css" rel="stylesheet">
+    <script defer src="/js/fontawesomeAll.js"></script>
+    <title>Coursellama - Carica materiale</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <div class="blueDiv1 text-light">
+        <%- include('../component/header') -%>
+        
+        <div class="container text-light py-5">
+            <h1 class="display-2 text-center">Carica Materiale</h1>
+        </div>
+        <input id="_csrf" type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+        <div class="container text-dark py-5">
+            <a href="/courses/<%=ctx.lesson.courseid%>" type="button" class="btn btn-outline-light mb-3">Ritorna al corso</a>
+            <div ondragenter="drag(event)" ondragover="drag(event)" ondrop="drop(event)" class="ps-3 pt-2 mb-3 bg-light rounded uploadForm overflow-auto" id="materials">
+            </div>
+            <div class="input-group mb-3">
+                <button type="button" class="btn btn-light form-control py-3" onclick="triggerInput()">Clicca qui per caricare i file oppure trascinali nell'area qui sopra</button>
+                <input id="loadFile" type="file" class="hiddenFileInput" multiple>
+            </div>
+            <div class="d-grid gap-2">
+                <button onclick="makeRequest(<%=ctx.lesson.courseid%>, <%=ctx.lesson.id%>)" class="btn py-3 btn-outline-light">Carica materiale</button>
+            </div>
+            <br>
+            <div id="errors" >
+            </div>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+
+    <%- include('../component/footer') -%>
+    <%- include('../component/cookie_consent') -%>
+
+    <script src="/js/uploadFileHandler.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cookieConsent.js"></script>
+</body>
+</html>

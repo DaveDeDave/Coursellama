@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.png" sizes="16x16" type="image/png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/aos.css" rel="stylesheet">
+    <link href="/css/customCss.css" rel="stylesheet">
+    <script defer src="/js/fontawesomeAll.js"></script>
+    <title>Coursellama - Domande</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <div class="blueDiv1 text-light">
+        <%- include('../component/header') -%>
+        
+        <div class="container text-light py-5">
+            <h1 class="display-2 text-center">Domande sul corso</h1>
+        </div>
+        <div class="container">
+            <a href="/courses/<%=ctx.course.id%>" type="button" class="btn btn-lg btn-outline-light mb-3">Ritorna al corso</a>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+ 
+    <div class="container mb-5">
+        <% if(ctx.questions.length == 0) { %>
+            <div class="text-center">
+                <p class="text-muted h1"> Nessuna ha ancora chiesto nulla</p>
+            </div>
+        <% } %>
+        <% for(let question of ctx.questions) { %>
+            <div class="row pt-2">
+                <div class="row">
+                    <h5><%= question.question %></h5>
+                </div>
+                <div class="row ps-4">
+                    <p><%= question.answer %></p>
+                </div>
+                <% if(ctx.info.admin) { %> 
+                    <div class="col"><a href="" data-bs-toggle="modal" data-bs-target="#q<%=question.id%>"><button type="button" class="btn btn-outline-dark mb-1">Elimina</button></a></div>
+                    <div class="modal fade" id="q<%=question.id%>" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Conferma</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Eliminare la domanda definitivamente?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <form action="/profile/questions/delete" method="POST">
+                                        <input type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+                                        <input type="hidden" name="previousLocation" value="/courses/<%=ctx.course.id%>/questions">
+                                        <input type="hidden" name="q" value="<%= question.id %>">
+                                        <input type="submit" class="btn btn-danger" value="Conferma">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <hr>
+        <% } %>
+    </div>
+    
+    <%- include('../component/footer') -%>
+    <%- include('../component/cookie_consent') -%>
+
+    <a href="#" class="btn back-to-top rounded-circle shadow" data-aos="fade-up" data-aos-offset="500"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="/js/aos.js"></script>
+    <script src="/js/aosInit.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cookieConsent.js"></script>
+</body>
+</html>

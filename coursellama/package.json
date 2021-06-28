@@ -1,0 +1,27 @@
+{
+  "name": "coursellama",
+  "version": "1.0.0",
+  "description": "A project made at Eastern Piedmont University",
+  "main": "app.js",
+  "scripts": {
+    "start": "node -r dotenv/config app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DaveDeDave/Coursellama"
+  },
+  "author": "Davide Ceci",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "fs-extra": "^10.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "sqlite3": "^5.0.2"
+  }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/img/favicon.png" sizes="16x16" type="image/png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/customCss.css" rel="stylesheet">
+    <script defer src="/js/fontawesomeAll.js"></script>
+    <title>Coursellama - Nuova Lezione</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+    <div class="blueDiv1 text-light">
+        <%- include('../component/header') -%>
+        
+        <div class="container text-light py-5">
+            <h1 class="display-2 text-center">Nuova lezione</h1>
+        </div>
+        <div class="container text-dark py-4">
+            <a href="/courses/<%=ctx.course.id%>" type="button" class="btn btn-outline-light mb-3">Ritorna al corso</a>
+            <div class="row">
+                <div class="col-md btn-group text-light mb-3 text-center">
+                    <button type="button" class="btn btn-outline-light" onclick="decrease()">-</button>
+                    <input id="numberOfLessons" type="text" class="numberForm text-center w-75" value="1" onkeypress="return validate(event)">
+                    <button type="button" class="btn btn-outline-light" onclick="increase()">+</button>
+                </div>
+                <div class="col-md">
+                    <div class="d-grid gap-2 mb-3">
+                        <button class="btn py-3 btn-outline-light" onclick="setLesson()">Imposta lezioni da aggiungere</button>
+                    </div>
+                </div>
+            </div>
+            <form action="/courses/new" method="POST">
+                <input type="hidden" name="_csrf" value="<%=ctx.csrfToken%>">
+                <div id="lessons">
+                    <div class="form-floating mb-3">
+                        <input type="text" name="titles" class="form-control"  placeholder="Titolo" required>
+                        <label for="floatingTitle">Titolo</label>
+                    </div>
+                </div>
+                <input type="hidden" name="action" value="createLesson">
+                <input type="hidden" name="c" value="<%= ctx.course.id %>">
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn py-3 btn-outline-light">Crea Lezione/i</button>
+                </div>
+            </form>
+            <% if(ctx.info.errors) { %>
+                <br><div class="alert alert-danger" role="alert"><%= ctx.info.errors %></div>
+            <% } %>
+        </div>
+        <img class="img-fluid" src="/img/end_div.png">
+    </div>
+
+    <%- include('../component/footer') -%>
+    <%- include('../component/cookie_consent') -%>
+
+    <script src="/js/validation.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/cookieConsent.js"></script>
+</body>
+</html>
