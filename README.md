@@ -9,8 +9,11 @@ Coursellama is a web application for sharing courses. It is a project done at th
 3. type **npm start** to run the application
 4. open **localhost:3001** in your browser
 
+![preview](https://raw.githubusercontent.com/DaveDeDave/Coursellama/main/docs/coursellama.png)
+
 ## Entity Relationship Diagram
 Below is represented the Entity Relationship Diagram:
+
 ![ER](https://raw.githubusercontent.com/DaveDeDave/Coursellama/main/docs/EntityRelationshipDiagram.png)
 
 ## Utility
