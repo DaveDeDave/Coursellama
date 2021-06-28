@@ -46,6 +46,7 @@ Type in your terminal:
 - Server-side rendering - EJS
 - Bootstrap
 - JWT
+- Sqlite3
 
 ## Disclaimer
 All images and icons used in this project belong to their rightful owners
